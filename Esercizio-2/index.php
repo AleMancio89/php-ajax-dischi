@@ -72,17 +72,32 @@ $db = [
         [
             'poster'=> 'https://m.media-amazon.com/images/I/71K9CbNZPsL._SS500_.jpg',
             'title'=> 'Bad',
-            'author'=> 'Michael Jacjson',
+            'author'=> 'Michael Jackson',
             'genre'=> 'Pop',
             'year'=> '1987'
         ]
     ]
 ];
 
+$input_filter = $_GET['input_filter'];
+
 header('Content-Type: application/json');
 
 header('Access-Control-Allow-Origin: *');
 
-echo json_encode($db);
+if($input_filter == ''){
+    echo json_encode($db);
+} else {
+    $filtered_db = $db;
+    $filtered_db['response'] = [];
+    foreach($db['response'] as $key => $value){
+       if((strpos(strtolower($value['author']), strtolower($input_filter)) !== false) || (strpos(strtolower($value['title']), strtolower($input_filter)) !== false)){
+           $filtered_db['response'][] = $value;
+       }
+    }
+    echo json_encode($filtered_db);
+};
+
+
 
 ?>

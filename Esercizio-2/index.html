@@ -17,7 +17,9 @@
 
         <div id="root" class="cds-container container">
 
-             <div class="row albums">                
+            <input @keyup.enter="search" type="text" v-model="inputUser" placeholder="Cerca e premi invio">
+
+            <div class="row albums">                
                 <div v-for="disc in albums" class="cd">
                     <img :src="disc.poster" alt="Album logo">
                     <h3>{{ disc.title }}</h3>
