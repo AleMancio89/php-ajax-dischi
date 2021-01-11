@@ -7,7 +7,7 @@ const app = new Vue({
 	},
 	methods: {
 		search() {
-			axios.get('http://localhost/Esercizi/php-ajax-dischi/Esercizio-2/index.php', {
+			axios.get('http://localhost/Esercizi/php-ajax-dischi/Esercizio-2/server.php', {
 				params: {
 					input_filter: this.inputUser
 				}
@@ -19,8 +19,11 @@ const app = new Vue({
 	},
 	mounted() {
 		//Chiamata API per recuperare i dati necessari che vengono salvati in albums[]
-		axios.get('http://localhost/Esercizi/php-ajax-dischi/Esercizio-2/index.php'
-		)
+		axios.get('http://localhost/Esercizi/php-ajax-dischi/Esercizio-2/server.php', {
+			params: {
+				input_filter:''
+			}
+		})
 		.then(result => {
 			this.albums = result.data.response;
 		})
