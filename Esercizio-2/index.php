@@ -85,7 +85,7 @@ header('Content-Type: application/json');
 
 header('Access-Control-Allow-Origin: *');
 
-if($input_filter == ''){
+if($input_filter == null){
     echo json_encode($db);
 } else {
     $filtered_db = $db;
@@ -97,6 +97,7 @@ if($input_filter == ''){
     }
     echo json_encode($filtered_db);
 };
+
 
 
 
